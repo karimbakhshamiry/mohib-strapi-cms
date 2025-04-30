@@ -402,11 +402,11 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 }
 
 export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
-  collectionName: "guest_writers";
+  collectionName: 'guest_writers';
   info: {
-    displayName: "Guest Writer";
-    pluralName: "guest-writers";
-    singularName: "guest-writer";
+    displayName: 'Guest Writer';
+    pluralName: 'guest-writers';
+    singularName: 'guest-writer';
   };
   options: {
     draftAndPublish: true;
@@ -414,25 +414,25 @@ export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
   attributes: {
     about: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
-      "oneToMany",
-      "api::guest-writer.guest-writer"
+      'oneToMany',
+      'api::guest-writer.guest-writer'
     > &
       Schema.Attribute.Private;
-    magazines: Schema.Attribute.Relation<"oneToMany", "api::magazine.magazine">;
+    magazines: Schema.Attribute.Relation<'oneToMany', 'api::magazine.magazine'>;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     profession: Schema.Attribute.String & Schema.Attribute.Required;
     profile_picture: Schema.Attribute.Media<
-      "images" | "files" | "videos" | "audios"
+      'images' | 'files' | 'videos' | 'audios'
     >;
     publishedAt: Schema.Attribute.DateTime;
     short_intro: Schema.Attribute.Text;
     social_link: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
@@ -514,6 +514,7 @@ export interface ApiMediaCoverageMediaCoverage
 export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
   info: {
+    description: '';
     displayName: 'Team Member';
     pluralName: 'team-members';
     singularName: 'team-member';
@@ -532,6 +533,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    profession: Schema.Attribute.String & Schema.Attribute.Required;
     profile_picture: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
