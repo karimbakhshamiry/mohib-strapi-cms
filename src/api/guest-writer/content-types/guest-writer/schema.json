@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guest_writers",
+  "info": {
+    "singularName": "guest-writer",
+    "pluralName": "guest-writers",
+    "displayName": "Guest Writer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "profession": {
+      "type": "string",
+      "required": true
+    },
+    "profile_picture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "short_intro": {
+      "type": "text"
+    },
+    "about": {
+      "type": "text"
+    },
+    "social_link": {
+      "type": "string"
+    },
+    "about_rich_text": {
+      "type": "richtext"
+    },
+    "magazines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::magazine.magazine",
+      "mappedBy": "guest_writer"
+    }
+  }
+}

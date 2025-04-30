@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magazines",
+  "info": {
+    "singularName": "magazine",
+    "pluralName": "magazines",
+    "displayName": "Magazine"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text",
+      "required": true
+    },
+    "cover": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "thumbnail": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    },
+    "publish_date": {
+      "type": "date",
+      "required": true
+    },
+    "featured_photographers": {
+      "type": "text",
+      "required": true
+    },
+    "about": {
+      "type": "text",
+      "required": true
+    },
+    "author_view": {
+      "type": "text",
+      "required": true
+    },
+    "guest_writer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guest-writer.guest-writer",
+      "inversedBy": "magazines"
+    },
+    "download_link_persian": {
+      "type": "string",
+      "required": true
+    },
+    "download_link_english": {
+      "type": "string",
+      "required": true
+    },
+    "order_link_english": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

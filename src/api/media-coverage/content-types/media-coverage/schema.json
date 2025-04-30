@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_coverages",
+  "info": {
+    "singularName": "media-coverage",
+    "pluralName": "media-coverages",
+    "displayName": "Media Coverage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
