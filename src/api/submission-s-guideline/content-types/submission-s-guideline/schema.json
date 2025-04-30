@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "submission_s_guidelines",
+  "info": {
+    "singularName": "submission-s-guideline",
+    "pluralName": "submission-s-guidelines",
+    "displayName": "Submission's Guideline"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "guidelines": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.bullet-points"
+    }
+  }
+}

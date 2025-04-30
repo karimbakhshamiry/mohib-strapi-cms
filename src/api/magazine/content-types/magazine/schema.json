@@ -4,7 +4,8 @@
   "info": {
     "singularName": "magazine",
     "pluralName": "magazines",
-    "displayName": "Magazine"
+    "displayName": "Magazine",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,20 +20,20 @@
       "required": true
     },
     "cover": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "thumbnail": {
+      "required": true,
       "allowedTypes": [
         "images"
-      ],
+      ]
+    },
+    "thumbnail": {
       "type": "media",
       "multiple": true,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "publish_date": {
       "type": "date",
@@ -46,15 +47,11 @@
       "type": "text",
       "required": true
     },
-    "author_view": {
-      "type": "text",
-      "required": true
-    },
     "guest_writer": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::guest-writer.guest-writer",
-      "inversedBy": "magazines"
+      "inversedBy": "magazine"
     },
     "download_link_persian": {
       "type": "string",
@@ -71,6 +68,12 @@
     "slug": {
       "type": "string",
       "required": true
+    },
+    "issue_number": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "min": 1
     }
   }
 }

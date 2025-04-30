@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "submission_forms",
+  "info": {
+    "singularName": "submission-form",
+    "pluralName": "submission-forms",
+    "displayName": "Submission Form"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "button_text": {
+      "type": "string"
+    }
+  }
+}

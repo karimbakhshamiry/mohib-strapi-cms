@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "call_for_submissions",
+  "info": {
+    "singularName": "call-for-submission",
+    "pluralName": "call-for-submissions",
+    "displayName": "Call for Submission"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -369,6 +369,64 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
+  collectionName: 'about_pages';
+  info: {
+    displayName: 'About Page';
+    pluralName: 'about-pages';
+    singularName: 'about-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    cover: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-page.about-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCallForSubmissionCallForSubmission
+  extends Struct.SingleTypeSchema {
+  collectionName: 'call_for_submissions';
+  info: {
+    displayName: 'Call for Submission';
+    pluralName: 'call-for-submissions';
+    singularName: 'call-for-submission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::call-for-submission.call-for-submission'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -404,6 +462,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
   collectionName: 'guest_writers';
   info: {
+    description: '';
     displayName: 'Guest Writer';
     pluralName: 'guest-writers';
     singularName: 'guest-writer';
@@ -413,6 +472,10 @@ export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
   };
   attributes: {
     about: Schema.Attribute.Text;
+    cover_photo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -422,7 +485,8 @@ export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
       'api::guest-writer.guest-writer'
     > &
       Schema.Attribute.Private;
-    magazines: Schema.Attribute.Relation<'oneToMany', 'api::magazine.magazine'>;
+    magaine_issue_no: Schema.Attribute.Integer & Schema.Attribute.Required;
+    magazine: Schema.Attribute.Relation<'oneToOne', 'api::magazine.magazine'>;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     profession: Schema.Attribute.String & Schema.Attribute.Required;
     profile_picture: Schema.Attribute.Media<
@@ -434,12 +498,14 @@ export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    writer_view: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
 export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
   collectionName: 'magazines';
   info: {
+    description: '';
     displayName: 'Magazine';
     pluralName: 'magazines';
     singularName: 'magazine';
@@ -449,7 +515,6 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
   };
   attributes: {
     about: Schema.Attribute.Text & Schema.Attribute.Required;
-    author_view: Schema.Attribute.Text & Schema.Attribute.Required;
     cover: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -458,9 +523,18 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
     download_link_persian: Schema.Attribute.String & Schema.Attribute.Required;
     featured_photographers: Schema.Attribute.Text & Schema.Attribute.Required;
     guest_writer: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToOne',
       'api::guest-writer.guest-writer'
     >;
+    issue_number: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -511,6 +585,65 @@ export interface ApiMediaCoverageMediaCoverage
   };
 }
 
+export interface ApiSubmissionFormSubmissionForm
+  extends Struct.SingleTypeSchema {
+  collectionName: 'submission_forms';
+  info: {
+    displayName: 'Submission Form';
+    pluralName: 'submission-forms';
+    singularName: 'submission-form';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    button_text: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    link: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::submission-form.submission-form'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubmissionSGuidelineSubmissionSGuideline
+  extends Struct.SingleTypeSchema {
+  collectionName: 'submission_s_guidelines';
+  info: {
+    displayName: "Submission's Guideline";
+    pluralName: 'submission-s-guidelines';
+    singularName: 'submission-s-guideline';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    guidelines: Schema.Attribute.Component<'shared.bullet-points', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::submission-s-guideline.submission-s-guideline'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
   info: {
@@ -538,6 +671,35 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTermsOfSubmissionTermsOfSubmission
+  extends Struct.SingleTypeSchema {
+  collectionName: 'terms_of_submissions';
+  info: {
+    displayName: 'Terms of Submission';
+    pluralName: 'terms-of-submissions';
+    singularName: 'terms-of-submission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::terms-of-submission.terms-of-submission'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    terms: Schema.Attribute.Component<'shared.title-description-plain', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1053,11 +1215,16 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-page.about-page': ApiAboutPageAboutPage;
+      'api::call-for-submission.call-for-submission': ApiCallForSubmissionCallForSubmission;
       'api::global.global': ApiGlobalGlobal;
       'api::guest-writer.guest-writer': ApiGuestWriterGuestWriter;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::media-coverage.media-coverage': ApiMediaCoverageMediaCoverage;
+      'api::submission-form.submission-form': ApiSubmissionFormSubmissionForm;
+      'api::submission-s-guideline.submission-s-guideline': ApiSubmissionSGuidelineSubmissionSGuideline;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
+      'api::terms-of-submission.terms-of-submission': ApiTermsOfSubmissionTermsOfSubmission;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

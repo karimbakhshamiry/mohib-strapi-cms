@@ -4,7 +4,8 @@
   "info": {
     "singularName": "guest-writer",
     "pluralName": "guest-writers",
-    "displayName": "Guest Writer"
+    "displayName": "Guest Writer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,14 +20,15 @@
       "required": true
     },
     "profile_picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "short_intro": {
       "type": "text"
@@ -37,11 +39,30 @@
     "social_link": {
       "type": "string"
     },
-    "magazines": {
+    "magazine": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::magazine.magazine",
       "mappedBy": "guest_writer"
+    },
+    "cover_photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "writer_view": {
+      "type": "text",
+      "required": true
+    },
+    "magaine_issue_no": {
+      "type": "integer",
+      "required": true
     }
   }
 }

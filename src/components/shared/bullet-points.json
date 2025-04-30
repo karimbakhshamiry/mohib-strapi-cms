@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_bullet_points",
+  "info": {
+    "displayName": "Bullet Points"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.plain-text"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

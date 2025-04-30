@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "terms_of_submissions",
+  "info": {
+    "singularName": "terms-of-submission",
+    "pluralName": "terms-of-submissions",
+    "displayName": "Terms of Submission"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "terms": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.title-description-plain"
+    }
+  }
+}

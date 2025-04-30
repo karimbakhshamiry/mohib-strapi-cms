@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedBulletPoints extends Struct.ComponentSchema {
+  collectionName: 'components_shared_bullet_points';
+  info: {
+    displayName: 'Bullet Points';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'shared.plain-text', true>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -8,6 +19,16 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
   attributes: {
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedPlainText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_plain_texts';
+  info: {
+    displayName: 'Plain Text';
+  };
+  attributes: {
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
@@ -62,14 +83,28 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTitleDescriptionPlain extends Struct.ComponentSchema {
+  collectionName: 'components_shared_title_description_plain_s';
+  info: {
+    displayName: 'Title -  Description (plain)';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.bullet-points': SharedBulletPoints;
       'shared.media': SharedMedia;
+      'shared.plain-text': SharedPlainText;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
+      'shared.title-description-plain': SharedTitleDescriptionPlain;
     }
   }
 }
