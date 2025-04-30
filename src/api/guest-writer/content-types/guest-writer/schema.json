@@ -37,9 +37,6 @@
     "social_link": {
       "type": "string"
     },
-    "about_rich_text": {
-      "type": "richtext"
-    },
     "magazines": {
       "type": "relation",
       "relation": "oneToMany",
