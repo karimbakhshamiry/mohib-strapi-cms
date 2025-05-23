@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_horitizintal_lines",
+  "info": {
+    "displayName": "Horitizintal Line"
+  },
+  "options": {},
+  "attributes": {
+    "hidden": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "color": {
+      "type": "string",
+      "regex": "#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})\\b"
+    }
+  }
+}

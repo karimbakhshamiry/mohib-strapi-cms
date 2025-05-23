@@ -4,16 +4,25 @@
   "info": {
     "singularName": "terms-of-submission",
     "pluralName": "terms-of-submissions",
-    "displayName": "Terms of Submission"
+    "displayName": "Terms of Submission",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "terms": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.title-description-plain"
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.title-description-plain",
+        "shared.slider",
+        "shared.multiple-buttons",
+        "shared.media",
+        "shared.horitizintal-line",
+        "shared.heading-2-cover",
+        "shared.heading-1",
+        "shared.dynamic-block"
+      ]
     }
   }
 }

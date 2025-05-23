@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "call_for_submissions",
+  "collectionName": "abouts",
   "info": {
-    "singularName": "call-for-submission",
-    "pluralName": "call-for-submissions",
-    "displayName": "Call for Submission"
+    "singularName": "about",
+    "pluralName": "abouts",
+    "displayName": "About"
   },
   "options": {
     "draftAndPublish": true

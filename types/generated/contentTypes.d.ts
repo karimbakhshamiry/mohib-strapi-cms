@@ -369,27 +369,34 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
-  collectionName: 'about_pages';
+export interface ApiAboutAbout extends Struct.SingleTypeSchema {
+  collectionName: 'abouts';
   info: {
-    displayName: 'About Page';
-    pluralName: 'about-pages';
-    singularName: 'about-page';
+    displayName: 'About';
+    pluralName: 'abouts';
+    singularName: 'about';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    content: Schema.Attribute.Text & Schema.Attribute.Required;
-    cover: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.title-description-plain',
+        'shared.slider',
+        'shared.multiple-buttons',
+        'shared.media',
+        'shared.horitizintal-line',
+        'shared.heading-2-cover',
+        'shared.heading-1',
+        'shared.dynamic-block',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::about-page.about-page'
-    > &
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -410,7 +417,18 @@ export interface ApiCallForSubmissionCallForSubmission
     draftAndPublish: true;
   };
   attributes: {
-    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.title-description-plain',
+        'shared.slider',
+        'shared.multiple-buttons',
+        'shared.media',
+        'shared.horitizintal-line',
+        'shared.heading-2-cover',
+        'shared.heading-1',
+        'shared.dynamic-block',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -442,7 +460,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    defaultSeo: Schema.Attribute.Component<'shared.seo', false>;
     favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -589,6 +606,7 @@ export interface ApiSubmissionFormSubmissionForm
   extends Struct.SingleTypeSchema {
   collectionName: 'submission_forms';
   info: {
+    description: '';
     displayName: 'Submission Form';
     pluralName: 'submission-forms';
     singularName: 'submission-form';
@@ -597,11 +615,21 @@ export interface ApiSubmissionFormSubmissionForm
     draftAndPublish: true;
   };
   attributes: {
-    button_text: Schema.Attribute.String;
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.title-description-plain',
+        'shared.slider',
+        'shared.multiple-buttons',
+        'shared.media',
+        'shared.horitizintal-line',
+        'shared.heading-2-cover',
+        'shared.heading-1',
+        'shared.dynamic-block',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    link: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -619,6 +647,7 @@ export interface ApiSubmissionSGuidelineSubmissionSGuideline
   extends Struct.SingleTypeSchema {
   collectionName: 'submission_s_guidelines';
   info: {
+    description: '';
     displayName: "Submission's Guideline";
     pluralName: 'submission-s-guidelines';
     singularName: 'submission-s-guideline';
@@ -627,10 +656,21 @@ export interface ApiSubmissionSGuidelineSubmissionSGuideline
     draftAndPublish: true;
   };
   attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.title-description-plain',
+        'shared.slider',
+        'shared.multiple-buttons',
+        'shared.media',
+        'shared.horitizintal-line',
+        'shared.heading-2-cover',
+        'shared.heading-1',
+        'shared.dynamic-block',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    guidelines: Schema.Attribute.Component<'shared.bullet-points', true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -656,6 +696,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    bio: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -671,6 +712,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String & Schema.Attribute.Required;
+    social_link: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -681,6 +723,7 @@ export interface ApiTermsOfSubmissionTermsOfSubmission
   extends Struct.SingleTypeSchema {
   collectionName: 'terms_of_submissions';
   info: {
+    description: '';
     displayName: 'Terms of Submission';
     pluralName: 'terms-of-submissions';
     singularName: 'terms-of-submission';
@@ -689,6 +732,18 @@ export interface ApiTermsOfSubmissionTermsOfSubmission
     draftAndPublish: true;
   };
   attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.title-description-plain',
+        'shared.slider',
+        'shared.multiple-buttons',
+        'shared.media',
+        'shared.horitizintal-line',
+        'shared.heading-2-cover',
+        'shared.heading-1',
+        'shared.dynamic-block',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -699,7 +754,6 @@ export interface ApiTermsOfSubmissionTermsOfSubmission
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    terms: Schema.Attribute.Component<'shared.title-description-plain', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1215,7 +1269,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about-page.about-page': ApiAboutPageAboutPage;
+      'api::about.about': ApiAboutAbout;
       'api::call-for-submission.call-for-submission': ApiCallForSubmissionCallForSubmission;
       'api::global.global': ApiGlobalGlobal;
       'api::guest-writer.guest-writer': ApiGuestWriterGuestWriter;

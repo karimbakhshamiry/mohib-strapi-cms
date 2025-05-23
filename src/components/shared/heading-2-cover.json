@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_heading_2_covers",
+  "info": {
+    "displayName": "Heading 2 - Cover"
+  },
+  "options": {},
+  "attributes": {
+    "cover_photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "title": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}

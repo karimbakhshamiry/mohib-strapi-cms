@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_multiple_buttons",
+  "info": {
+    "displayName": "Multiple Buttons"
+  },
+  "options": {},
+  "attributes": {
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.single-button"
+    }
+  }
+}

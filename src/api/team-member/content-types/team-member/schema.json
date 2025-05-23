@@ -31,6 +31,13 @@
     "profession": {
       "type": "string",
       "required": true
+    },
+    "bio": {
+      "type": "text"
+    },
+    "social_link": {
+      "type": "string",
+      "regex": "\\bhttps?:\\/\\/(?:www\\.)?[a-zA-Z0-9-]+(?:\\.[a-zA-Z]{2,})+(?::\\d{2,5})?(?:\\/[^\\s]*)?\\b"
     }
   }
 }

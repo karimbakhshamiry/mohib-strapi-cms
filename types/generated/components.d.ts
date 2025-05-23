@@ -1,13 +1,53 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface SharedBulletPoints extends Struct.ComponentSchema {
-  collectionName: 'components_shared_bullet_points';
+export interface SharedDynamicBlock extends Struct.ComponentSchema {
+  collectionName: 'components_shared_dynamic_blocks';
   info: {
-    displayName: 'Bullet Points';
+    displayName: 'Dynamic Block';
   };
   attributes: {
-    items: Schema.Attribute.Component<'shared.plain-text', true>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    type: Schema.Attribute.Enumeration<
+      ['magazines slider', 'magazines detailed block', 'media coverage', 'team']
+    >;
+  };
+}
+
+export interface SharedHeading1 extends Struct.ComponentSchema {
+  collectionName: 'components_shared_heading_1s';
+  info: {
+    displayName: 'Heading 1';
+  };
+  attributes: {
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.Text;
+  };
+}
+
+export interface SharedHeading2Cover extends Struct.ComponentSchema {
+  collectionName: 'components_shared_heading_2_covers';
+  info: {
+    displayName: 'Heading 2 - Cover';
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+    cover_photo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.Text;
+  };
+}
+
+export interface SharedHoritizintalLine extends Struct.ComponentSchema {
+  collectionName: 'components_shared_horitizintal_lines';
+  info: {
+    displayName: 'Horitizintal Line';
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    hidden: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
   };
 }
 
@@ -22,52 +62,26 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedPlainText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_plain_texts';
+export interface SharedMultipleButtons extends Struct.ComponentSchema {
+  collectionName: 'components_shared_multiple_buttons';
   info: {
-    displayName: 'Plain Text';
+    displayName: 'Multiple Buttons';
   };
   attributes: {
-    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    buttons: Schema.Attribute.Component<'shared.single-button', true>;
   };
 }
 
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    body: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedRichText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_rich_texts';
+export interface SharedSingleButton extends Struct.ComponentSchema {
+  collectionName: 'components_shared_single_buttons';
   info: {
     description: '';
-    displayName: 'Rich text';
-    icon: 'align-justify';
+    displayName: 'Single Button';
   };
   attributes: {
-    body: Schema.Attribute.RichText;
-  };
-}
-
-export interface SharedSeo extends Struct.ComponentSchema {
-  collectionName: 'components_shared_seos';
-  info: {
-    description: '';
-    displayName: 'Seo';
-    icon: 'allergies';
-    name: 'Seo';
-  };
-  attributes: {
-    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
-    shareImage: Schema.Attribute.Media<'images'>;
+    link: Schema.Attribute.String;
+    text: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['primary', 'secondary']>;
   };
 }
 
@@ -97,12 +111,13 @@ export interface SharedTitleDescriptionPlain extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'shared.bullet-points': SharedBulletPoints;
+      'shared.dynamic-block': SharedDynamicBlock;
+      'shared.heading-1': SharedHeading1;
+      'shared.heading-2-cover': SharedHeading2Cover;
+      'shared.horitizintal-line': SharedHoritizintalLine;
       'shared.media': SharedMedia;
-      'shared.plain-text': SharedPlainText;
-      'shared.quote': SharedQuote;
-      'shared.rich-text': SharedRichText;
-      'shared.seo': SharedSeo;
+      'shared.multiple-buttons': SharedMultipleButtons;
+      'shared.single-button': SharedSingleButton;
       'shared.slider': SharedSlider;
       'shared.title-description-plain': SharedTitleDescriptionPlain;
     }

@@ -4,16 +4,25 @@
   "info": {
     "singularName": "submission-s-guideline",
     "pluralName": "submission-s-guidelines",
-    "displayName": "Submission's Guideline"
+    "displayName": "Submission's Guideline",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "guidelines": {
-      "type": "component",
-      "repeatable": true,
-      "component": "shared.bullet-points"
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.title-description-plain",
+        "shared.slider",
+        "shared.multiple-buttons",
+        "shared.media",
+        "shared.horitizintal-line",
+        "shared.heading-2-cover",
+        "shared.heading-1",
+        "shared.dynamic-block"
+      ]
     }
   }
 }

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_shared_single_buttons",
+  "info": {
+    "displayName": "Single Button",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string",
+      "regex": "\\b(?:https?:\\/\\/)?(?:www\\.)?[a-zA-Z0-9-]+(?:\\.[a-zA-Z]{2,})+(?::\\d{2,5})?(?:\\/[^\\s]*)?\\b"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_dynamic_blocks",
+  "info": {
+    "displayName": "Dynamic Block"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "magazines slider",
+        "magazines detailed block",
+        "media coverage",
+        "team"
+      ]
+    }
+  }
+}

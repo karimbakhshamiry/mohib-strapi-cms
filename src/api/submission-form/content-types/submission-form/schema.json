@@ -4,18 +4,25 @@
   "info": {
     "singularName": "submission-form",
     "pluralName": "submission-forms",
-    "displayName": "Submission Form"
+    "displayName": "Submission Form",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "link": {
-      "type": "string",
-      "required": true
-    },
-    "button_text": {
-      "type": "string"
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.title-description-plain",
+        "shared.slider",
+        "shared.multiple-buttons",
+        "shared.media",
+        "shared.horitizintal-line",
+        "shared.heading-2-cover",
+        "shared.heading-1",
+        "shared.dynamic-block"
+      ]
     }
   }
 }
