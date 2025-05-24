@@ -1,40 +1,45 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedCover extends Struct.ComponentSchema {
+  collectionName: 'components_shared_covers';
+  info: {
+    description: '';
+    displayName: 'Cover Image';
+  };
+  attributes: {
+    cover_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+  };
+}
+
 export interface SharedDynamicBlock extends Struct.ComponentSchema {
   collectionName: 'components_shared_dynamic_blocks';
   info: {
+    description: '';
     displayName: 'Dynamic Block';
   };
   attributes: {
     type: Schema.Attribute.Enumeration<
-      ['magazines slider', 'magazines detailed block', 'media coverage', 'team']
+      [
+        'Magazine Grid',
+        'Subscription',
+        'Magazine Card',
+        'Team',
+        'Media Coverage',
+      ]
     >;
   };
 }
 
-export interface SharedHeading1 extends Struct.ComponentSchema {
-  collectionName: 'components_shared_heading_1s';
+export interface SharedGallery extends Struct.ComponentSchema {
+  collectionName: 'components_shared_galleries';
   info: {
-    displayName: 'Heading 1';
+    displayName: 'Gallery';
   };
   attributes: {
-    subtitle: Schema.Attribute.Text;
-    title: Schema.Attribute.Text;
-  };
-}
-
-export interface SharedHeading2Cover extends Struct.ComponentSchema {
-  collectionName: 'components_shared_heading_2_covers';
-  info: {
-    displayName: 'Heading 2 - Cover';
-  };
-  attributes: {
-    content: Schema.Attribute.Text;
-    cover_photo: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    subtitle: Schema.Attribute.Text;
-    title: Schema.Attribute.Text;
+    gallery: Schema.Attribute.Media<'images' | 'files', true> &
+      Schema.Attribute.Required;
   };
 }
 
@@ -51,17 +56,6 @@ export interface SharedHoritizintalLine extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedMedia extends Struct.ComponentSchema {
-  collectionName: 'components_shared_media';
-  info: {
-    displayName: 'Media';
-    icon: 'file-video';
-  };
-  attributes: {
-    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-  };
-}
-
 export interface SharedMultipleButtons extends Struct.ComponentSchema {
   collectionName: 'components_shared_multiple_buttons';
   info: {
@@ -69,6 +63,26 @@ export interface SharedMultipleButtons extends Struct.ComponentSchema {
   };
   attributes: {
     buttons: Schema.Attribute.Component<'shared.single-button', true>;
+  };
+}
+
+export interface SharedPageTitle extends Struct.ComponentSchema {
+  collectionName: 'components_shared_page_titles';
+  info: {
+    displayName: 'Page Title';
+  };
+  attributes: {
+    page_title: Schema.Attribute.Text;
+  };
+}
+
+export interface SharedSecondaryTitle extends Struct.ComponentSchema {
+  collectionName: 'components_shared_secondary_titles';
+  info: {
+    displayName: 'Secondary Title';
+  };
+  attributes: {
+    secondary_title: Schema.Attribute.Text;
   };
 }
 
@@ -85,41 +99,40 @@ export interface SharedSingleButton extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
+export interface SharedSubtitle extends Struct.ComponentSchema {
+  collectionName: 'components_shared_subtitles';
   info: {
-    description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
+    displayName: 'subtitle';
   };
   attributes: {
-    files: Schema.Attribute.Media<'images', true>;
+    subtitle: Schema.Attribute.Text;
   };
 }
 
-export interface SharedTitleDescriptionPlain extends Struct.ComponentSchema {
-  collectionName: 'components_shared_title_description_plain_s';
+export interface SharedText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_texts';
   info: {
-    displayName: 'Title -  Description (plain)';
+    description: '';
+    displayName: 'Text';
   };
   attributes: {
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.cover': SharedCover;
       'shared.dynamic-block': SharedDynamicBlock;
-      'shared.heading-1': SharedHeading1;
-      'shared.heading-2-cover': SharedHeading2Cover;
+      'shared.gallery': SharedGallery;
       'shared.horitizintal-line': SharedHoritizintalLine;
-      'shared.media': SharedMedia;
       'shared.multiple-buttons': SharedMultipleButtons;
+      'shared.page-title': SharedPageTitle;
+      'shared.secondary-title': SharedSecondaryTitle;
       'shared.single-button': SharedSingleButton;
-      'shared.slider': SharedSlider;
-      'shared.title-description-plain': SharedTitleDescriptionPlain;
+      'shared.subtitle': SharedSubtitle;
+      'shared.text': SharedText;
     }
   }
 }

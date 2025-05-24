@@ -4,7 +4,8 @@
   "info": {
     "singularName": "about",
     "pluralName": "abouts",
-    "displayName": "About"
+    "displayName": "About",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,14 +14,15 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "shared.title-description-plain",
-        "shared.slider",
         "shared.multiple-buttons",
-        "shared.media",
         "shared.horitizintal-line",
-        "shared.heading-2-cover",
-        "shared.heading-1",
-        "shared.dynamic-block"
+        "shared.dynamic-block",
+        "shared.page-title",
+        "shared.text",
+        "shared.subtitle",
+        "shared.secondary-title",
+        "shared.gallery",
+        "shared.cover"
       ]
     }
   }

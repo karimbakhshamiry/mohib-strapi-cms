@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_shared_secondary_titles",
+  "info": {
+    "displayName": "Secondary Title"
+  },
+  "options": {},
+  "attributes": {
+    "secondary_title": {
+      "type": "text"
+    }
+  }
+}

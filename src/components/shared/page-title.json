@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_shared_page_titles",
+  "info": {
+    "displayName": "Page Title"
+  },
+  "options": {},
+  "attributes": {
+    "page_title": {
+      "type": "text"
+    }
+  }
+}

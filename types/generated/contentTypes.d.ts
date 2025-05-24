@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   collectionName: 'abouts';
   info: {
+    description: '';
     displayName: 'About';
     pluralName: 'abouts';
     singularName: 'about';
@@ -382,14 +383,15 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'shared.title-description-plain',
-        'shared.slider',
         'shared.multiple-buttons',
-        'shared.media',
         'shared.horitizintal-line',
-        'shared.heading-2-cover',
-        'shared.heading-1',
         'shared.dynamic-block',
+        'shared.page-title',
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.gallery',
+        'shared.cover',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -409,6 +411,7 @@ export interface ApiCallForSubmissionCallForSubmission
   extends Struct.SingleTypeSchema {
   collectionName: 'call_for_submissions';
   info: {
+    description: '';
     displayName: 'Call for Submission';
     pluralName: 'call-for-submissions';
     singularName: 'call-for-submission';
@@ -419,14 +422,16 @@ export interface ApiCallForSubmissionCallForSubmission
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'shared.title-description-plain',
-        'shared.slider',
         'shared.multiple-buttons',
-        'shared.media',
         'shared.horitizintal-line',
-        'shared.heading-2-cover',
-        'shared.heading-1',
         'shared.dynamic-block',
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.page-title',
+        'shared.gallery',
+        'shared.cover',
+        'shared.single-button',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -617,14 +622,15 @@ export interface ApiSubmissionFormSubmissionForm
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'shared.title-description-plain',
-        'shared.slider',
         'shared.multiple-buttons',
-        'shared.media',
         'shared.horitizintal-line',
-        'shared.heading-2-cover',
-        'shared.heading-1',
         'shared.dynamic-block',
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.page-title',
+        'shared.gallery',
+        'shared.cover',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -658,14 +664,15 @@ export interface ApiSubmissionSGuidelineSubmissionSGuideline
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'shared.title-description-plain',
-        'shared.slider',
         'shared.multiple-buttons',
-        'shared.media',
         'shared.horitizintal-line',
-        'shared.heading-2-cover',
-        'shared.heading-1',
         'shared.dynamic-block',
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.page-title',
+        'shared.gallery',
+        'shared.cover',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -734,14 +741,15 @@ export interface ApiTermsOfSubmissionTermsOfSubmission
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'shared.title-description-plain',
-        'shared.slider',
         'shared.multiple-buttons',
-        'shared.media',
         'shared.horitizintal-line',
-        'shared.heading-2-cover',
-        'shared.heading-1',
         'shared.dynamic-block',
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.page-title',
+        'shared.gallery',
+        'shared.cover',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

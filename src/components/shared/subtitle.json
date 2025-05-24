@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_shared_subtitles",
+  "info": {
+    "displayName": "subtitle"
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "text"
+    }
+  }
+}

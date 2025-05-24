@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_covers",
+  "info": {
+    "displayName": "Cover Image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "cover_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
