@@ -528,6 +528,43 @@ export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHomeHome extends Struct.SingleTypeSchema {
+  collectionName: 'homes';
+  info: {
+    displayName: 'Home';
+    pluralName: 'homes';
+    singularName: 'home';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.page-title',
+        'shared.multiple-buttons',
+        'shared.horitizintal-line',
+        'shared.gallery',
+        'shared.dynamic-block',
+        'shared.cover',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
   collectionName: 'magazines';
   info: {
@@ -545,9 +582,14 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    download_link_english: Schema.Attribute.String & Schema.Attribute.Required;
-    download_link_persian: Schema.Attribute.String & Schema.Attribute.Required;
+    english_edition: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     featured_photographers: Schema.Attribute.Text & Schema.Attribute.Required;
+    gallery: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     guest_writer: Schema.Attribute.Relation<
       'oneToOne',
       'api::guest-writer.guest-writer'
@@ -568,8 +610,13 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     order_link_english: Schema.Attribute.String & Schema.Attribute.Required;
+    persian_edition: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     publish_date: Schema.Attribute.Date & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    secondary_title_1: Schema.Attribute.Text;
+    secondary_title_2: Schema.Attribute.Text;
     slug: Schema.Attribute.String & Schema.Attribute.Required;
     subtitle: Schema.Attribute.Text & Schema.Attribute.Required;
     thumbnail: Schema.Attribute.Media<'images', true> &
@@ -602,48 +649,6 @@ export interface ApiMediaCoverageMediaCoverage
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::media-coverage.media-coverage'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiSubmissionFormSubmissionForm
-  extends Struct.SingleTypeSchema {
-  collectionName: 'submission_forms';
-  info: {
-    description: '';
-    displayName: 'Submission Form';
-    pluralName: 'submission-forms';
-    singularName: 'submission-form';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    blocks: Schema.Attribute.DynamicZone<
-      [
-        'shared.multiple-buttons',
-        'shared.horitizintal-line',
-        'shared.dynamic-block',
-        'shared.text',
-        'shared.subtitle',
-        'shared.secondary-title',
-        'shared.page-title',
-        'shared.gallery',
-        'shared.cover',
-      ]
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::submission-form.submission-form'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1285,9 +1290,9 @@ declare module '@strapi/strapi' {
       'api::call-for-submission.call-for-submission': ApiCallForSubmissionCallForSubmission;
       'api::global.global': ApiGlobalGlobal;
       'api::guest-writer.guest-writer': ApiGuestWriterGuestWriter;
+      'api::home.home': ApiHomeHome;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::media-coverage.media-coverage': ApiMediaCoverageMediaCoverage;
-      'api::submission-form.submission-form': ApiSubmissionFormSubmissionForm;
       'api::submission-s-guideline.submission-s-guideline': ApiSubmissionSGuidelineSubmissionSGuideline;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
       'api::terms-of-submission.terms-of-submission': ApiTermsOfSubmissionTermsOfSubmission;

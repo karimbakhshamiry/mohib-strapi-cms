@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "submission_forms",
+  "collectionName": "homes",
   "info": {
-    "singularName": "submission-form",
-    "pluralName": "submission-forms",
-    "displayName": "Submission Form",
-    "description": ""
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Home"
   },
   "options": {
     "draftAndPublish": true
@@ -14,14 +13,14 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "shared.multiple-buttons",
-        "shared.horitizintal-line",
-        "shared.dynamic-block",
         "shared.text",
         "shared.subtitle",
         "shared.secondary-title",
         "shared.page-title",
+        "shared.multiple-buttons",
+        "shared.horitizintal-line",
         "shared.gallery",
+        "shared.dynamic-block",
         "shared.cover"
       ]
     }

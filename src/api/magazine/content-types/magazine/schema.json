@@ -53,14 +53,6 @@
       "target": "api::guest-writer.guest-writer",
       "inversedBy": "magazine"
     },
-    "download_link_persian": {
-      "type": "string",
-      "required": true
-    },
-    "download_link_english": {
-      "type": "string",
-      "required": true
-    },
     "order_link_english": {
       "type": "string",
       "required": true
@@ -74,6 +66,44 @@
       "required": true,
       "unique": true,
       "min": 1
+    },
+    "persian_edition": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "english_edition": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "secondary_title_1": {
+      "type": "text"
+    },
+    "secondary_title_2": {
+      "type": "text"
+    },
+    "gallery": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
