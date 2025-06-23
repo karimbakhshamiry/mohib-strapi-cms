@@ -56,6 +56,19 @@ export interface SharedHoritizintalLine extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedMetadata extends Struct.ComponentSchema {
+  collectionName: 'components_shared_metadata';
+  info: {
+    displayName: 'Metadata';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    tags: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMultipleButtons extends Struct.ComponentSchema {
   collectionName: 'components_shared_multiple_buttons';
   info: {
@@ -127,6 +140,7 @@ declare module '@strapi/strapi' {
       'shared.dynamic-block': SharedDynamicBlock;
       'shared.gallery': SharedGallery;
       'shared.horitizintal-line': SharedHoritizintalLine;
+      'shared.metadata': SharedMetadata;
       'shared.multiple-buttons': SharedMultipleButtons;
       'shared.page-title': SharedPageTitle;
       'shared.secondary-title': SharedSecondaryTitle;

@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -96,14 +97,19 @@
       "type": "text"
     },
     "gallery": {
+      "type": "media",
+      "multiple": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "metadata": {
+      "type": "component",
+      "component": "shared.metadata",
+      "repeatable": false
     }
   }
 }

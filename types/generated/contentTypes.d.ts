@@ -396,6 +396,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
         'shared.secondary-title',
         'shared.gallery',
         'shared.cover',
+        'shared.metadata',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -436,6 +437,7 @@ export interface ApiCallForSubmissionCallForSubmission
         'shared.gallery',
         'shared.cover',
         'shared.single-button',
+        'shared.metadata',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -448,37 +450,6 @@ export interface ApiCallForSubmissionCallForSubmission
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
-  collectionName: 'globals';
-  info: {
-    description: 'Define global settings';
-    displayName: 'Global';
-    pluralName: 'globals';
-    singularName: 'global';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    favicon: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::global.global'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
-    siteName: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -513,6 +484,7 @@ export interface ApiGuestWriterGuestWriter extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     magaine_issue_no: Schema.Attribute.Integer & Schema.Attribute.Required;
     magazine: Schema.Attribute.Relation<'oneToOne', 'api::magazine.magazine'>;
+    metadata: Schema.Attribute.Component<'shared.metadata', false>;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     profession: Schema.Attribute.String & Schema.Attribute.Required;
     profile_picture: Schema.Attribute.Media<
@@ -550,6 +522,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
         'shared.gallery',
         'shared.dynamic-block',
         'shared.cover',
+        'shared.metadata',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -609,6 +582,7 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
       'api::magazine.magazine'
     > &
       Schema.Attribute.Private;
+    metadata: Schema.Attribute.Component<'shared.metadata', false>;
     order_link_english: Schema.Attribute.String & Schema.Attribute.Required;
     persian_edition: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
@@ -651,6 +625,7 @@ export interface ApiMediaCoverageMediaCoverage
       'api::media-coverage.media-coverage'
     > &
       Schema.Attribute.Private;
+    metadata: Schema.Attribute.Component<'shared.metadata', false>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -682,6 +657,7 @@ export interface ApiSubmissionSGuidelineSubmissionSGuideline
         'shared.page-title',
         'shared.gallery',
         'shared.cover',
+        'shared.metadata',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -722,7 +698,9 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
       'api::team-member.team-member'
     > &
       Schema.Attribute.Private;
+    metadata: Schema.Attribute.Component<'shared.metadata', false>;
     name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer;
     profession: Schema.Attribute.String & Schema.Attribute.Required;
     profile_picture: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
@@ -759,6 +737,7 @@ export interface ApiTermsOfSubmissionTermsOfSubmission
         'shared.page-title',
         'shared.gallery',
         'shared.cover',
+        'shared.metadata',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -1288,7 +1267,6 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::call-for-submission.call-for-submission': ApiCallForSubmissionCallForSubmission;
-      'api::global.global': ApiGlobalGlobal;
       'api::guest-writer.guest-writer': ApiGuestWriterGuestWriter;
       'api::home.home': ApiHomeHome;
       'api::magazine.magazine': ApiMagazineMagazine;

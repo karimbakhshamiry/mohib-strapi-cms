@@ -10,10 +10,14 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string",
       "required": true
+    },
+    "order": {
+      "type": "integer"
     },
     "role": {
       "type": "string",
@@ -38,6 +42,11 @@
     "social_link": {
       "type": "string",
       "regex": "\\bhttps?:\\/\\/(?:www\\.)?[a-zA-Z0-9-]+(?:\\.[a-zA-Z]{2,})+(?::\\d{2,5})?(?:\\/[^\\s]*)?\\b"
+    },
+    "metadata": {
+      "type": "component",
+      "component": "shared.metadata",
+      "repeatable": false
     }
   }
 }

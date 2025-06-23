@@ -9,6 +9,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "blocks": {
       "type": "dynamiczone",
@@ -21,7 +22,8 @@
         "shared.horitizintal-line",
         "shared.gallery",
         "shared.dynamic-block",
-        "shared.cover"
+        "shared.cover",
+        "shared.metadata"
       ]
     }
   }

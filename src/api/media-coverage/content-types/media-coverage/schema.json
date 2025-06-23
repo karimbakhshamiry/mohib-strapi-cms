@@ -9,18 +9,24 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "cover": {
+      "type": "media",
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "link": {
       "type": "string",
       "required": true
+    },
+    "metadata": {
+      "type": "component",
+      "component": "shared.metadata",
+      "repeatable": false
     }
   }
 }
