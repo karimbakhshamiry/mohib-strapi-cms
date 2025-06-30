@@ -676,6 +676,34 @@ export interface ApiSubmissionSGuidelineSubmissionSGuideline
   };
 }
 
+export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
+  collectionName: 'subscribers';
+  info: {
+    displayName: 'subscriber';
+    pluralName: 'subscribers';
+    singularName: 'subscriber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscriber.subscriber'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   collectionName: 'team_members';
   info: {
@@ -1272,6 +1300,7 @@ declare module '@strapi/strapi' {
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::media-coverage.media-coverage': ApiMediaCoverageMediaCoverage;
       'api::submission-s-guideline.submission-s-guideline': ApiSubmissionSGuidelineSubmissionSGuideline;
+      'api::subscriber.subscriber': ApiSubscriberSubscriber;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
       'api::terms-of-submission.terms-of-submission': ApiTermsOfSubmissionTermsOfSubmission;
       'plugin::content-releases.release': PluginContentReleasesRelease;
