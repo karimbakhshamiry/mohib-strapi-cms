@@ -538,6 +538,39 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiHyperlinkHyperlink extends Struct.CollectionTypeSchema {
+  collectionName: 'hyperlinks';
+  info: {
+    displayName: 'Hyperlink';
+    pluralName: 'hyperlinks';
+    singularName: 'hyperlink';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hyperlink.hyperlink'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    unique_identifier: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+  };
+}
+
 export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
   collectionName: 'magazines';
   info: {
@@ -1297,6 +1330,7 @@ declare module '@strapi/strapi' {
       'api::call-for-submission.call-for-submission': ApiCallForSubmissionCallForSubmission;
       'api::guest-writer.guest-writer': ApiGuestWriterGuestWriter;
       'api::home.home': ApiHomeHome;
+      'api::hyperlink.hyperlink': ApiHyperlinkHyperlink;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::media-coverage.media-coverage': ApiMediaCoverageMediaCoverage;
       'api::submission-s-guideline.submission-s-guideline': ApiSubmissionSGuidelineSubmissionSGuideline;

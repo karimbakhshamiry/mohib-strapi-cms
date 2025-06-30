@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hyperlinks",
+  "info": {
+    "singularName": "hyperlink",
+    "pluralName": "hyperlinks",
+    "displayName": "Hyperlink"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "unique_identifier": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
