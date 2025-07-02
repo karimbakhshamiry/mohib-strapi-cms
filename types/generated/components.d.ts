@@ -106,7 +106,10 @@ export interface SharedSingleButton extends Struct.ComponentSchema {
     displayName: 'Single Button';
   };
   attributes: {
-    link: Schema.Attribute.String;
+    hyperlink: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::hyperlink.hyperlink'
+    >;
     text: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<['primary', 'secondary']>;
   };
