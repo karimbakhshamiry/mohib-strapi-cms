@@ -38,6 +38,9 @@ export default {
           const result: any = await next();
 
           await createOrUpdateWriterAndMagazineHyperlinks({
+            name:
+              result?.title ??
+              `${result?.name} - Issue ${result?.magaine_issue_no}`,
             documentId: result?.documentId,
             resourceType,
             slug: result?.slug,
@@ -49,15 +52,17 @@ export default {
           return result;
         } else if (context.action == "publish") {
           const result: any = await next();
+          const data = result?.entries?.[0];
           await createOrUpdateWriterAndMagazineHyperlinks({
+            name:
+              data?.title ?? `${data?.name} - Issue ${data?.magaine_issue_no}`,
             documentId: context.params.documentId,
             resourceType,
-            slug: result?.slug,
+            slug: data?.slug,
             status: "published",
-            updatedById: result?.updatedBy?.id,
-            createdById: result?.createdBy?.id,
+            updatedById: data?.updatedBy?.id,
+            createdById: data?.createdBy?.id,
           });
-
           return result;
         } else if (context.action == "update") {
           (context.params.data as any).slug = slugify(
@@ -66,6 +71,9 @@ export default {
           const result: any = await next();
 
           await createOrUpdateWriterAndMagazineHyperlinks({
+            name:
+              result?.title ??
+              `${result?.name} - Issue ${result?.magaine_issue_no}`,
             documentId: result?.documentId,
             resourceType,
             slug: result?.slug,

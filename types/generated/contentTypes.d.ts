@@ -561,6 +561,7 @@ export interface ApiHyperlinkHyperlink extends Struct.CollectionTypeSchema {
       'api::hyperlink.hyperlink'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     unique_identifier: Schema.Attribute.String &
       Schema.Attribute.Required &

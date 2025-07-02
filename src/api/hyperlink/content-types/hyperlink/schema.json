@@ -11,12 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "unique_identifier": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "url": {
+    "unique_identifier": {
       "type": "string",
       "required": true,
       "unique": true

@@ -5,9 +5,17 @@ export default async function createOrUpdateWriterAndMagazineHyperlinks(data: {
   resourceType: "writer" | "magazine";
   createdById?: string;
   updatedById?: string;
+  name?: string;
 }) {
-  const { documentId, slug, status, createdById, updatedById, resourceType } =
-    data;
+  const {
+    documentId,
+    slug,
+    status,
+    createdById,
+    updatedById,
+    resourceType,
+    name,
+  } = data;
 
   let url = "";
   switch (resourceType) {
@@ -33,6 +41,7 @@ export default async function createOrUpdateWriterAndMagazineHyperlinks(data: {
     await strapi.documents("api::hyperlink.hyperlink").update({
       documentId: existing_draft_document.documentId,
       data: {
+        name,
         url,
         updated_by_id: updatedById,
       },
@@ -44,6 +53,7 @@ export default async function createOrUpdateWriterAndMagazineHyperlinks(data: {
   } else {
     await strapi.documents("api::hyperlink.hyperlink").create({
       data: {
+        name,
         url,
         unique_identifier: documentId,
         updated_by_id: updatedById,
