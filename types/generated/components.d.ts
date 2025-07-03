@@ -49,7 +49,9 @@ export interface SharedHoritizintalLine extends Struct.ComponentSchema {
     displayName: 'Horitizintal Line';
   };
   attributes: {
-    color: Schema.Attribute.String;
+    color: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'#eeeeee'>;
     hidden: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;

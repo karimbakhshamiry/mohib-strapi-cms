@@ -27,6 +27,12 @@
       "type": "component",
       "component": "shared.metadata",
       "repeatable": false
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "min": 1
     }
   }
 }
