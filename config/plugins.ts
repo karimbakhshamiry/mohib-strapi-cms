@@ -22,4 +22,11 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  ...(env.ENABLE_STRAPI_DASHBOARD === "true"
+    ? {
+        "strapi-plugin-dashboard": {
+          enabled: true,
+        },
+      }
+    : {}),
 });

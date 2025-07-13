@@ -15,6 +15,13 @@
       "type": "email",
       "required": true,
       "unique": false
+    },
+    "continent": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string",
+      "required": true
     }
   }
 }

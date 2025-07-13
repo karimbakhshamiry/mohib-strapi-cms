@@ -4,6 +4,10 @@ import {
   deleteWriterAndMagazineHyperlinks,
 } from "./middlewares";
 import { slugify } from "./utils";
+import { errors } from "@strapi/utils";
+import lookup from "country-code-lookup";
+import { isDefined } from "class-validator";
+import { UAParser } from "ua-parser-js";
 
 export default {
   /**
@@ -91,8 +95,164 @@ export default {
         }
       }
 
-      // always return next()
+      if (
+        context.uid === "api::subscriber.subscriber" &&
+        context.action === "create"
+      ) {
+        // if a subscriber with provided email already exists, then dont add anything
+        const lower_email: string = context.params.data?.email?.toLowerCase();
+        context.params.data["email"] = lower_email;
 
+        if (!isDefined(lower_email)) {
+          throw new errors.ValidationError(
+            "email must not be empty and must be a valid email address.",
+            {
+              errors: [
+                {
+                  path: ["email"],
+                  message: "email must be provided",
+                  name: "ValidationError",
+                  value: lower_email,
+                },
+              ],
+            }
+          );
+        }
+
+        const existing_subscriber = await strapi
+          .documents("api::subscriber.subscriber")
+          .findFirst({
+            filters: { email: { $eq: lower_email } },
+          });
+
+        if (existing_subscriber) {
+          // if there is already someone with this email, return it, and not create any new one
+          return existing_subscriber;
+        }
+
+        // add country and continent
+        const country = context.params.data?.country?.toUpperCase();
+        if (!country) {
+          throw new errors.ValidationError(
+            "country must be either ISO2 or ISO3 country code.",
+            {
+              errors: [
+                {
+                  path: ["country"],
+                  message: "country must be provided",
+                  name: "ValidationError",
+                  value: country,
+                },
+              ],
+            }
+          );
+        }
+
+        try {
+          const lookup_result = lookup.byIso(country);
+
+          context.params.data["country"] = lookup_result.country;
+          context.params.data["continent"] = lookup_result.continent;
+        } catch (error) {
+          throw new errors.ValidationError(
+            "country must be ISO2 or ISO3 country code.",
+            {
+              errors: [
+                {
+                  path: ["country"],
+                  message: "Invalid country code provided",
+                  name: "ValidationError",
+                  value: country,
+                },
+              ],
+            }
+          );
+        }
+      }
+
+      // handle adding analytics details to download
+      if (
+        context.uid ===
+          "api::magazine-download-analytic.magazine-download-analytic" &&
+        context.action === "create"
+      ) {
+        // validating magazine issue_number
+        const issue_number = context.params.data?.issue_number;
+        const existing_magazine = await strapi
+          .documents("api::magazine.magazine")
+          .findFirst({
+            filters: { issue_number: { $eq: issue_number } },
+          });
+
+        if (!existing_magazine) {
+          throw new errors.NotFoundError(
+            `Magazine with issue number ${issue_number} not found.`,
+            {
+              errors: [
+                {
+                  path: ["issue_number"],
+                  message: "Invalid issue_number",
+                  name: "NotFoundError",
+                  value: issue_number,
+                },
+              ],
+            }
+          );
+        }
+
+        // getting device info from the user agent
+        const user_agent: string = context.params.data?.user_agent;
+
+        const parsed_user_agent = UAParser(user_agent);
+
+        context.params.data["browser"] = parsed_user_agent.browser.name;
+        context.params.data["device_model"] = parsed_user_agent.device.model;
+        context.params.data["device_type"] = parsed_user_agent.device.type;
+        context.params.data["device_vendor"] = parsed_user_agent.device.vendor;
+        context.params.data["os_name"] = parsed_user_agent.os.name;
+        context.params.data["os_version"] = parsed_user_agent.os.version;
+
+        // add country and continent
+        const country = context.params.data?.country?.toUpperCase();
+        if (!isDefined(country)) {
+          throw new errors.ValidationError(
+            "country must be either ISO2 or ISO3 country code.",
+            {
+              errors: [
+                {
+                  path: ["country"],
+                  message: "Invalid country code provided",
+                  name: "ValidationError",
+                  value: country,
+                },
+              ],
+            }
+          );
+        }
+
+        try {
+          const lookup_result = lookup.byIso(country);
+
+          context.params.data["country"] = lookup_result.country;
+          context.params.data["continent"] = lookup_result.continent;
+        } catch (error) {
+          throw new errors.ValidationError(
+            "country must be ISO2 or ISO3 country code.",
+            {
+              errors: [
+                {
+                  path: ["country"],
+                  message: "Invalid country code provided",
+                  name: "ValidationError",
+                  value: country,
+                },
+              ],
+            }
+          );
+        }
+      }
+
+      // always return next()
       const result = await next();
       return result;
     });

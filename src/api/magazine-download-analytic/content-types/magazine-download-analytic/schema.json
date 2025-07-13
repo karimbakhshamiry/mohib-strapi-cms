@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magazine_download_analytics",
+  "info": {
+    "singularName": "magazine-download-analytic",
+    "pluralName": "magazine-download-analytics",
+    "displayName": "Magazine Download Analytic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "browser": {
+      "type": "string"
+    },
+    "device_model": {
+      "type": "string"
+    },
+    "device_type": {
+      "type": "string"
+    },
+    "device_vendor": {
+      "type": "string"
+    },
+    "os_name": {
+      "type": "string"
+    },
+    "os_version": {
+      "type": "string"
+    },
+    "ip_address": {
+      "type": "string",
+      "required": true
+    },
+    "country": {
+      "type": "string",
+      "required": true
+    },
+    "continent": {
+      "type": "string"
+    },
+    "issue_number": {
+      "type": "integer",
+      "required": true
+    },
+    "user_agent": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -575,6 +575,50 @@ export interface ApiHyperlinkHyperlink extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMagazineDownloadAnalyticMagazineDownloadAnalytic
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'magazine_download_analytics';
+  info: {
+    displayName: 'Magazine Download Analytic';
+    pluralName: 'magazine-download-analytics';
+    singularName: 'magazine-download-analytic';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+  };
+  attributes: {
+    browser: Schema.Attribute.String;
+    continent: Schema.Attribute.String;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    device_model: Schema.Attribute.String;
+    device_type: Schema.Attribute.String;
+    device_vendor: Schema.Attribute.String;
+    ip_address: Schema.Attribute.String & Schema.Attribute.Required;
+    issue_number: Schema.Attribute.Integer & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::magazine-download-analytic.magazine-download-analytic'
+    > &
+      Schema.Attribute.Private;
+    os_name: Schema.Attribute.String;
+    os_version: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
   collectionName: 'magazines';
   info: {
@@ -732,6 +776,8 @@ export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    continent: Schema.Attribute.String;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1350,6 +1396,7 @@ declare module '@strapi/strapi' {
       'api::guest-writer.guest-writer': ApiGuestWriterGuestWriter;
       'api::home.home': ApiHomeHome;
       'api::hyperlink.hyperlink': ApiHyperlinkHyperlink;
+      'api::magazine-download-analytic.magazine-download-analytic': ApiMagazineDownloadAnalyticMagazineDownloadAnalytic;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::media-coverage.media-coverage': ApiMediaCoverageMediaCoverage;
       'api::submission-s-guideline.submission-s-guideline': ApiSubmissionSGuidelineSubmissionSGuideline;
