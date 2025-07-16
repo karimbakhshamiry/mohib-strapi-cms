@@ -603,6 +603,8 @@ export interface ApiMagazineDownloadAnalyticMagazineDownloadAnalytic
     device_vendor: Schema.Attribute.String;
     ip_address: Schema.Attribute.String & Schema.Attribute.Required;
     issue_number: Schema.Attribute.Integer & Schema.Attribute.Required;
+    language: Schema.Attribute.Enumeration<['English', 'Persian']> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

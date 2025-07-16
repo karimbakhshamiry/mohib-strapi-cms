@@ -51,6 +51,14 @@
     "user_agent": {
       "type": "string",
       "required": true
+    },
+    "language": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "English",
+        "Persian"
+      ]
     }
   }
 }
