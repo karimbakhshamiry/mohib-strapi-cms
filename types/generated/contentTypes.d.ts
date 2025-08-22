@@ -977,6 +977,47 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginDashboardBuilderWidgets
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dashboard-builder_widgets';
+  info: {
+    collectionName: 'widgets';
+    description: '';
+    displayName: 'Dashboard Widget';
+    pluralName: 'widgets';
+    singularName: 'widgets';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::dashboard-builder.widgets'
+    > &
+      Schema.Attribute.Private;
+    metafields: Schema.Attribute.JSON & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    row_index: Schema.Attribute.Integer & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    widget_type: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PluginI18NLocale extends Struct.CollectionTypeSchema {
   collectionName: 'i18n_locale';
   info: {
@@ -1407,6 +1448,7 @@ declare module '@strapi/strapi' {
       'api::terms-of-submission.terms-of-submission': ApiTermsOfSubmissionTermsOfSubmission;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::dashboard-builder.widgets': PluginDashboardBuilderWidgets;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow;
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage;
