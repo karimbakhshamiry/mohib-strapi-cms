@@ -35,6 +35,12 @@ export default {
             filters: { issue_number: { $eq: i }, language: { $eq: "English" } },
             status: "published",
           });
+
+        result.push({
+          name: `Issue #${i}`,
+          Persian: persianCount,
+          English: englishCount,
+        });
       }
 
       ctx.body = result;
