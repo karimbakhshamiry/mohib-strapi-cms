@@ -10,5 +10,25 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/magazine-analytics-countries",
+      handler: "magazine-analytics.getMagazineDownloadCountryAnalytics",
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
+      path: "/magazine-analytics-continents",
+      handler: "magazine-analytics.getMagazineDownloadContinentAnalytics",
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
