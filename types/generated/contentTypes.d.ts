@@ -397,6 +397,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
         'shared.gallery',
         'shared.cover',
         'shared.metadata',
+        'shared.photo-16-9',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -438,6 +439,7 @@ export interface ApiCallForSubmissionCallForSubmission
         'shared.cover',
         'shared.single-button',
         'shared.metadata',
+        'shared.photo-16-9',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -526,6 +528,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
         'shared.dynamic-block',
         'shared.cover',
         'shared.metadata',
+        'shared.photo-16-9',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -749,6 +752,7 @@ export interface ApiSubmissionSGuidelineSubmissionSGuideline
         'shared.gallery',
         'shared.cover',
         'shared.metadata',
+        'shared.photo-16-9',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -788,6 +792,48 @@ export interface ApiSubscriberSubscriber extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::subscriber.subscriber'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupportSupport extends Struct.SingleTypeSchema {
+  collectionName: 'supports';
+  info: {
+    displayName: 'Support';
+    pluralName: 'supports';
+    singularName: 'support';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'shared.text',
+        'shared.subtitle',
+        'shared.secondary-title',
+        'shared.page-title',
+        'shared.multiple-buttons',
+        'shared.metadata',
+        'shared.horitizintal-line',
+        'shared.gallery',
+        'shared.dynamic-block',
+        'shared.cover',
+        'shared.photo-16-9',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::support.support'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -866,6 +912,7 @@ export interface ApiTermsOfSubmissionTermsOfSubmission
         'shared.gallery',
         'shared.cover',
         'shared.metadata',
+        'shared.photo-16-9',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -1444,6 +1491,7 @@ declare module '@strapi/strapi' {
       'api::media-coverage.media-coverage': ApiMediaCoverageMediaCoverage;
       'api::submission-s-guideline.submission-s-guideline': ApiSubmissionSGuidelineSubmissionSGuideline;
       'api::subscriber.subscriber': ApiSubscriberSubscriber;
+      'api::support.support': ApiSupportSupport;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
       'api::terms-of-submission.terms-of-submission': ApiTermsOfSubmissionTermsOfSubmission;
       'plugin::content-releases.release': PluginContentReleasesRelease;

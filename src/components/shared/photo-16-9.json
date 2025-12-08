@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_photo_16_9s",
+  "info": {
+    "displayName": "Photo 16:9"
+  },
+  "options": {},
+  "attributes": {
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    }
+  },
+  "config": {}
+}

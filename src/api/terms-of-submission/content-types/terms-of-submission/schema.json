@@ -24,7 +24,8 @@
         "shared.page-title",
         "shared.gallery",
         "shared.cover",
-        "shared.metadata"
+        "shared.metadata",
+        "shared.photo-16-9"
       ]
     }
   }

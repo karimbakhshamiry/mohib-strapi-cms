@@ -91,6 +91,17 @@ export interface SharedPageTitle extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedPhoto169 extends Struct.ComponentSchema {
+  collectionName: 'components_shared_photo_16_9s';
+  info: {
+    displayName: 'Photo 16:9';
+  };
+  attributes: {
+    photos: Schema.Attribute.Media<'images' | 'videos', true> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface SharedSecondaryTitle extends Struct.ComponentSchema {
   collectionName: 'components_shared_secondary_titles';
   info: {
@@ -148,6 +159,7 @@ declare module '@strapi/strapi' {
       'shared.metadata': SharedMetadata;
       'shared.multiple-buttons': SharedMultipleButtons;
       'shared.page-title': SharedPageTitle;
+      'shared.photo-16-9': SharedPhoto169;
       'shared.secondary-title': SharedSecondaryTitle;
       'shared.single-button': SharedSingleButton;
       'shared.subtitle': SharedSubtitle;

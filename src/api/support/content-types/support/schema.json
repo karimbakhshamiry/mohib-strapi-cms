@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "submission_s_guidelines",
+  "collectionName": "supports",
   "info": {
-    "singularName": "submission-s-guideline",
-    "pluralName": "submission-s-guidelines",
-    "displayName": "Submission's Guideline",
-    "description": ""
+    "singularName": "support",
+    "pluralName": "supports",
+    "displayName": "Support"
   },
   "options": {
     "draftAndPublish": true
@@ -15,16 +14,16 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "shared.multiple-buttons",
-        "shared.horitizintal-line",
-        "shared.dynamic-block",
         "shared.text",
         "shared.subtitle",
         "shared.secondary-title",
         "shared.page-title",
-        "shared.gallery",
-        "shared.cover",
+        "shared.multiple-buttons",
         "shared.metadata",
+        "shared.horitizintal-line",
+        "shared.gallery",
+        "shared.dynamic-block",
+        "shared.cover",
         "shared.photo-16-9"
       ]
     }
